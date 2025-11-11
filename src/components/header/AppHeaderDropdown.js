@@ -33,23 +33,10 @@ const AppHeaderDropdown = () => {
         <Link to="/orders" className="dropdown-item">
           <CIcon icon={cilBell} className="me-2" />
           Orders
-          <CBadge color="info" className="ms-2">
-            42
-          </CBadge>
-        </Link>
-        <Link to="/refund-policy" className="dropdown-item">
-          <CIcon icon={cilEnvelopeOpen} className="me-2" />
-          Refund Policy
-          <CBadge color="success" className="ms-2">
-            42
-          </CBadge>
         </Link>
         <Link to="/product/reviews" className="dropdown-item">
           <CIcon icon={cilCommentSquare} className="me-2" />
           Reviews
-          <CBadge color="warning" className="ms-2">
-            42
-          </CBadge>
         </Link>
         <CDropdownHeader className="bg-body-secondary fw-semibold my-2">Settings</CDropdownHeader>
         <Link to="/profile" className="dropdown-item">
@@ -62,14 +49,14 @@ const AppHeaderDropdown = () => {
         </Link>
         <CDropdownDivider />
         <CDropdownItem
-  onClick={() => {
-    localStorage.removeItem('token') 
-    window.location.href = '/' 
-  }}
->
-  <CIcon icon={cilLockLocked} className="me-2" />
-  Lock Account
-</CDropdownItem>
+          onClick={() => {
+            localStorage.removeItem('token')
+            window.location.href = '/'
+          }}
+        >
+          <CIcon icon={cilLockLocked} className="me-2" />
+          Lock Account
+        </CDropdownItem>
       </CDropdownMenu>
     </CDropdown>
   )
