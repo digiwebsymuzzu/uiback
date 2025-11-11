@@ -56,7 +56,7 @@ const Orders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await axios.get(`http://udemandme.cloud/api/order?page=${page}&limit=${limit}`)
+        const res = await axios.get(`https://udemandme.cloud/api/order?page=${page}&limit=${limit}`)
         setOrders(res.data.data)
         setTotalPages(res.data.pages)
         setTotalOrders(res.data.total)
@@ -100,7 +100,7 @@ const Orders = () => {
     }
 
     try {
-      await axios.patch(`http://udemandme.cloud/api/order/${editForm.id}/status`, {
+      await axios.patch(`https://udemandme.cloud/api/order/${editForm.id}/status`, {
         status: editForm.Status,
       })
 
@@ -131,7 +131,7 @@ const Orders = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete(`http://udemandme.cloud/api/order/${id}`)
+          await axios.delete(`https://udemandme.cloud/api/order/${id}`)
           setOrders(orders.filter((order) => order._id !== id))
           toast.success('Order deleted successfully!')
         } catch (error) {
@@ -172,7 +172,7 @@ const Orders = () => {
       if (result.isConfirmed) {
         try {
           const ids = selectedRows.map((row) => row._id)
-          await axios.post('http://udemandme.cloud/api/order/delete-multiple', { ids })
+          await axios.post('https://udemandme.cloud/api/order/delete-multiple', { ids })
 
           setOrders(orders.filter((order) => !ids.includes(order._id)))
           setSelectedRows([])

@@ -49,7 +49,7 @@ const Tags = () => {
     description: '',
   })
 
-  const API_URL = 'http://udemandme.cloud/api/tags'
+  const API_URL = 'https://udemandme.cloud/api/tags'
 
   const fetchTags = async (page = 1, limit = 20, search = searchTerm) => {
     try {
@@ -280,7 +280,7 @@ const Tags = () => {
     formData.append('file', csvFile)
 
     try {
-      await axios.post('http://udemandme.cloud/api/tags/import', formData, {
+      await axios.post('https://udemandme.cloud/api/tags/import', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
 

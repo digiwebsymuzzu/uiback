@@ -157,7 +157,7 @@ const Attributes = () => {
 
     try {
       // Post new attribute to backend
-      await axios.post('http://udemandme.cloud/api/attributes', {
+      await axios.post('https://udemandme.cloud/api/attributes', {
         name,
         slug,
         status: 1, // default active
@@ -166,7 +166,7 @@ const Attributes = () => {
       toast.success('Attribute added successfully!')
 
       // Reload attributes from backend
-      const { data } = await axios.get('http://udemandme.cloud/api/attributes')
+      const { data } = await axios.get('https://udemandme.cloud/api/attributes')
       setCategories(data)
 
       // Reset form
@@ -180,7 +180,7 @@ const Attributes = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get('http://udemandme.cloud/api/attributes')
+        const { data } = await axios.get('https://udemandme.cloud/api/attributes')
         setCategories(data) // keep your existing one
         setAttributes(data) // add this line
       } catch (error) {
@@ -201,7 +201,7 @@ const Attributes = () => {
 
     try {
       // Call backend update API
-      await axios.put(`http://udemandme.cloud/api/attributes/${selectedBrand._id}`, {
+      await axios.put(`https://udemandme.cloud/api/attributes/${selectedBrand._id}`, {
         name,
         slug,
         status: 1, // keep as is or manage dropdown later
@@ -210,7 +210,7 @@ const Attributes = () => {
       toast.success('Attribute updated successfully!')
 
       // reload list
-      const { data } = await axios.get('http://udemandme.cloud/api/attributes')
+      const { data } = await axios.get('https://udemandme.cloud/api/attributes')
       setCategories(data)
 
       // reset
@@ -243,11 +243,11 @@ const Attributes = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete(`http://udemandme.cloud/api/attributes/${id}`)
+          await axios.delete(`https://udemandme.cloud/api/attributes/${id}`)
           toast.success('Attribute successfully deleted!')
 
           // Refresh the list
-          const { data } = await axios.get('http://udemandme.cloud/api/attributes')
+          const { data } = await axios.get('https://udemandme.cloud/api/attributes')
           setCategories(data)
         } catch (error) {
           toast.error(error.response?.data?.message || 'Error deleting attribute')
@@ -295,13 +295,13 @@ const Attributes = () => {
         try {
           // Loop through selected rows and delete one by one
           for (const row of selectedRows) {
-            await axios.delete(`http://udemandme.cloud/api/attributes/${row._id}`)
+            await axios.delete(`https://udemandme.cloud/api/attributes/${row._id}`)
           }
 
           toast.success(`${selectedRows.length} attribute(s) deleted!`)
 
           // Refresh list
-          const { data } = await axios.get('http://udemandme.cloud/api/attributes')
+          const { data } = await axios.get('https://udemandme.cloud/api/attributes')
           setCategories(data)
           setSelectedRows([])
         } catch (error) {
@@ -320,7 +320,7 @@ const Attributes = () => {
     }
 
     try {
-      await axios.post(`http://udemandme.cloud/api/attributes/${selectedBrand._id}/items`, {
+      await axios.post(`https://udemandme.cloud/api/attributes/${selectedBrand._id}/items`, {
         name,
         slug,
         description,
@@ -342,7 +342,9 @@ const Attributes = () => {
   // Fetch items for selected attribute
   const fetchItems = async (attributeId) => {
     try {
-      const { data } = await axios.get(`http://udemandme.cloud/api/attributes/${attributeId}/items`)
+      const { data } = await axios.get(
+        `https://udemandme.cloud/api/attributes/${attributeId}/items`,
+      )
       setItems(data)
     } catch (error) {
       toast.error('Failed to load items')
@@ -368,7 +370,7 @@ const Attributes = () => {
     }
 
     try {
-      await axios.put(`http://udemandme.cloud/api/attributes/${selectedBrand._id}/items/${_id}`, {
+      await axios.put(`https://udemandme.cloud/api/attributes/${selectedBrand._id}/items/${_id}`, {
         name,
         slug,
         description,
@@ -413,14 +415,14 @@ const Attributes = () => {
       if (result.isConfirmed) {
         try {
           await axios.delete(
-            `http://udemandme.cloud/api/attributes/${selectedBrand._id}/items/${itemId}`,
+            `https://udemandme.cloud/api/attributes/${selectedBrand._id}/items/${itemId}`,
           )
 
           toast.success('Item deleted successfully!')
 
           // Refresh items list
           const { data } = await axios.get(
-            `http://udemandme.cloud/api/attributes/${selectedBrand._id}/items`,
+            `https://udemandme.cloud/api/attributes/${selectedBrand._id}/items`,
           )
           setItems(data)
         } catch (error) {

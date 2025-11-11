@@ -67,7 +67,7 @@ const Allblogs = () => {
   useEffect(() => {
     const fetchTags = async () => {
       try {
-        const res = await axios.get('http://udemandme.cloud/api/getalltag')
+        const res = await axios.get('https://udemandme.cloud/api/getalltag')
         setAllTags(res.data.data || [])
       } catch (error) {
         console.error('Error fetching Blog:', error)
@@ -83,7 +83,7 @@ const Allblogs = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await axios.get('http://udemandme.cloud/api/allcategory')
+        const res = await axios.get('https://udemandme.cloud/api/allcategory')
         console.log('API Response:', res.data)
 
         // ✅ res.data ke andar hi data array hai
@@ -99,7 +99,7 @@ const Allblogs = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await axios.get('http://udemandme.cloud/api/allblog')
+        const res = await axios.get('https://udemandme.cloud/api/allblog')
         setBlogs(res.data.data)
       } catch (err) {
         console.error('Error fetching Blogs:', err)
@@ -124,7 +124,7 @@ const Allblogs = () => {
 
       // const obj = Object.fromEntries(formData.entries())
       // console.log('FormData as JSON:', obj)
-      const res = await axios.post('http://udemandme.cloud/api/blog', formData, {
+      const res = await axios.post('https://udemandme.cloud/api/blog', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -186,7 +186,7 @@ const Allblogs = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const res = await axios.delete(`http://udemandme.cloud/api/blog/${id}`)
+          const res = await axios.delete(`https://udemandme.cloud/api/blog/${id}`)
 
           if (res.data.success) {
             // frontend state se remove karna
@@ -296,7 +296,7 @@ const Allblogs = () => {
       }
 
       const res = await axios.put(
-        `http://udemandme.cloud/api/blogupdate/${editForm._id}`,
+        `https://udemandme.cloud/api/blogupdate/${editForm._id}`,
         formData,
         { headers: { 'Content-Type': 'multipart/form-data' } },
       )
@@ -314,7 +314,7 @@ const Allblogs = () => {
   }
   const handleStatusChange = async (id, newStatus) => {
     try {
-      const res = await axios.patch(`http://udemandme.cloud/api/updatestatus/${id}`, {
+      const res = await axios.patch(`https://udemandme.cloud/api/updatestatus/${id}`, {
         status: newStatus,
       })
 
@@ -366,7 +366,7 @@ const Allblogs = () => {
 
     try {
       await Promise.all(
-        selectedRows.map((blog) => axios.delete(`http://udemandme.cloud/api/blog/${blog._id}`)),
+        selectedRows.map((blog) => axios.delete(`https://udemandme.cloud/api/blog/${blog._id}`)),
       )
 
       // FIXED: use blogs instead of prev
@@ -392,7 +392,7 @@ const Allblogs = () => {
     try {
       await Promise.all(
         selectedRows.map((blog) =>
-          axios.patch(`http://udemandme.cloud/api/updatestatus/${blog._id}`, { status }),
+          axios.patch(`https://udemandme.cloud/api/updatestatus/${blog._id}`, { status }),
         ),
       )
 

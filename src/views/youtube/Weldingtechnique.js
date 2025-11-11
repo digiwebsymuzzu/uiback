@@ -63,7 +63,7 @@ const Weldingtechnique = () => {
   // Get All Data
   const fetchdata = async () => {
     try {
-      const response = await axios.get('http://udemandme.cloud/api/getallwelding')
+      const response = await axios.get('https://udemandme.cloud/api/getallwelding')
       setAlldata(response.data.data)
     } catch (err) {
       console.error('Error fetching Url:', err)
@@ -78,7 +78,7 @@ const Weldingtechnique = () => {
   const handleAddSubmit = async (e) => {
     e.preventDefault()
     try {
-      const res = await axios.post('http://udemandme.cloud/api/weldingpost', addForm, {
+      const res = await axios.post('https://udemandme.cloud/api/weldingpost', addForm, {
         headers: { 'Content-Type': 'application/json' },
       })
       //   console.log('addForm as JSON:', addForm)
@@ -106,7 +106,7 @@ const Weldingtechnique = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await axios.delete(`http://udemandme.cloud/api/deletewelding/${id}`)
+          const response = await axios.delete(`https://udemandme.cloud/api/deletewelding/${id}`)
           if (response.data.success) {
             setAlldata((prev) => prev.filter((item) => item._id !== id))
             toast.success('Welding Deleted successfully!')
@@ -133,7 +133,7 @@ const Weldingtechnique = () => {
   const handleEditSubmit = async () => {
     try {
       const res = await axios.put(
-        `http://udemandme.cloud/api/updatewelding/${editForm._id}`,
+        `https://udemandme.cloud/api/updatewelding/${editForm._id}`,
         editForm,
         { headers: { 'Content-Type': 'application/json' } },
       )
@@ -158,7 +158,7 @@ const Weldingtechnique = () => {
   }
   const handleStatusChange = async (id, newStatus) => {
     try {
-      const res = await axios.patch(`http://udemandme.cloud/api/updateweldingStatus/${id}`, {
+      const res = await axios.patch(`https://udemandme.cloud/api/updateweldingStatus/${id}`, {
         status: newStatus,
       })
       if (res.data.success) {

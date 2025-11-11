@@ -50,7 +50,7 @@ const Reviews = () => {
     }
 
     try {
-      const res = await axios.put(`http://udemandme.cloud/api/reviews/reply/${id}`, {
+      const res = await axios.put(`https://udemandme.cloud/api/reviews/reply/${id}`, {
         reply: replyText,
       })
 
@@ -78,7 +78,7 @@ const Reviews = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete(`http://udemandme.cloud/api/reviews/${id}`)
+          await axios.delete(`https://udemandme.cloud/api/reviews/${id}`)
           setReviews(reviews.filter((item) => item._id !== id))
           toast.success('Review deleted!')
         } catch (error) {
@@ -149,7 +149,7 @@ const Reviews = () => {
         limit: params.limit || pagination.limit,
       }).toString()
 
-      const res = await axios.get(`http://udemandme.cloud/api/reviews`)
+      const res = await axios.get(`https://udemandme.cloud/api/reviews`)
       setReviews(res.data.data || res.data)
 
       // Update pagination if API returns total count

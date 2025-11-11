@@ -100,7 +100,7 @@ const Category = () => {
   const fetchCategories = async (pageNumber = 1) => {
     try {
       setLoading(true)
-      const res = await axios.get('http://udemandme.cloud/api/categories', {
+      const res = await axios.get('https://udemandme.cloud/api/categories', {
         params: {
           page: pageNumber,
           limit,
@@ -159,7 +159,7 @@ const Category = () => {
       if (addForm.imageFile) {
         formData.append('cat_img', addForm.imageFile)
       }
-      const res = await axios.post('http://udemandme.cloud/api/categories', formData, {
+      const res = await axios.post('https://udemandme.cloud/api/categories', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -192,7 +192,7 @@ const Category = () => {
       cat_parent: category.cat_parent,
       cat_status: category.cat_status,
       image: category.cat_img
-        ? `http://udemandme.cloud/uploads/category/${category.cat_img}`
+        ? `https://udemandme.cloud/uploads/category/${category.cat_img}`
         : null,
       imageFile: null,
       isSuperParent: category.cat_superparent || false,
@@ -220,7 +220,7 @@ const Category = () => {
       formData.append('cat_img', editForm.imageFile)
     }
     try {
-      const res = await fetch(`http://udemandme.cloud/api/categories/edit/${editForm._id}`, {
+      const res = await fetch(`https://udemandme.cloud/api/categories/edit/${editForm._id}`, {
         method: 'PUT',
         body: formData,
       })
@@ -255,7 +255,7 @@ const Category = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const res = await fetch(`http://udemandme.cloud/api/categories/${id}`, {
+          const res = await fetch(`https://udemandme.cloud/api/categories/${id}`, {
             method: 'DELETE',
             headers: {
               'Content-Type': 'application/json',
@@ -277,7 +277,7 @@ const Category = () => {
   }
   const handleStatusChange = async (id, newStatus) => {
     newStatus = Number(newStatus)
-    const res = await fetch(`http://udemandme.cloud/api/categories/${id}`, {
+    const res = await fetch(`https://udemandme.cloud/api/categories/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ cat_status: newStatus }),
@@ -295,7 +295,7 @@ const Category = () => {
     try {
       await Promise.all(
         selectedRows.map((cat) =>
-          fetch(`http://udemandme.cloud/api/categories/${cat._id}`, {
+          fetch(`https://udemandme.cloud/api/categories/${cat._id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ cat_status: newStatus }),
@@ -347,7 +347,7 @@ const Category = () => {
           // Delete one by one (can optimize later with bulk API)
           await Promise.all(
             selectedRows.map((cat) =>
-              fetch(`http://udemandme.cloud/api/categories/${cat._id}`, {
+              fetch(`https://udemandme.cloud/api/categories/${cat._id}`, {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' },
               }),
@@ -369,7 +369,7 @@ const Category = () => {
   }
   const API_BASE =
     (import.meta?.env?.VITE_API_URL && import.meta.env.VITE_API_URL.trim()) ||
-    'http://udemandme.cloud'
+    'https://udemandme.cloud'
   const API_BASE_CLEAN = API_BASE.replace(/\/$/, '')
   // replace your handleSubmit with this
   const handleSubmit = async (e) => {
@@ -414,7 +414,7 @@ const Category = () => {
   const fetchParentCategories = async (page = 1) => {
     try {
       setParentLoading(true)
-      const res = await axios.get('http://udemandme.cloud/api/categories', {
+      const res = await axios.get('https://udemandme.cloud/api/categories', {
         params: { page, limit: 20 },
       })
       const data = res.data?.data || []

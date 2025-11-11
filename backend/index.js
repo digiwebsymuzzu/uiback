@@ -74,7 +74,7 @@ app.use((req, res, next) => {
 
 // CORS setup
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://udemandme.cloud')
+  res.header('Access-Control-Allow-Origin', 'https://udemandme.cloud')
   res.header(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept, Authorization',
@@ -151,5 +151,5 @@ const PORT = process.env.PORT || 5000
 app.listen(PORT, () => console.log(`Server running on port ${PORT} - index.js:73`))
 
 app.listen(PORT, () => {
-  console.log(`http://udemandme.cloud/ server is running on ${PORT}`)
+  console.log(`https://udemandme.cloud/ server is running on ${PORT}`)
 })

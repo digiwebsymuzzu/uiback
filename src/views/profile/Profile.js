@@ -89,7 +89,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await fetch('http://udemandme.cloud/api/profile', {
+        const res = await fetch('https://udemandme.cloud/api/profile', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
@@ -168,7 +168,7 @@ const Profile = () => {
         description: formData.description,
       }
 
-      const res = await fetch('http://udemandme.cloud/api/profile/update', {
+      const res = await fetch('https://udemandme.cloud/api/profile/update', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json', // ✅ important

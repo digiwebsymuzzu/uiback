@@ -144,7 +144,7 @@ const Brand = () => {
       }
 
       // POST request using axios
-      await axios.post('http://udemandme.cloud/api/brands', formData, {
+      await axios.post('https://udemandme.cloud/api/brands', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
 
@@ -179,7 +179,7 @@ const Brand = () => {
         status: params.status ?? '',
       }).toString()
 
-      const res = await axios.get(`http://udemandme.cloud/api/brands?${query}`)
+      const res = await axios.get(`https://udemandme.cloud/api/brands?${query}`)
       setCategories(res.data.data)
       setPagination(res.data.pagination)
     } catch (err) {
@@ -231,7 +231,7 @@ const Brand = () => {
         formData.append('brand_img', editForm.imageFile) // backend expects brand_img
       }
 
-      await axios.put(`http://udemandme.cloud/api/brands/edit/${editId}`, formData, {
+      await axios.put(`https://udemandme.cloud/api/brands/edit/${editId}`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
 
@@ -273,7 +273,7 @@ const Brand = () => {
 
       if (result.isConfirmed) {
         // Send DELETE request to backend
-        await axios.delete(`http://udemandme.cloud/api/brands/${id}`)
+        await axios.delete(`https://udemandme.cloud/api/brands/${id}`)
 
         // Update UI locally
         setCategories((prev) => prev.filter((cat) => cat._id !== id))
@@ -318,7 +318,7 @@ const Brand = () => {
         try {
           // Loop over selected rows and delete each one
           for (const brand of selectedRows) {
-            await axios.delete(`http://udemandme.cloud/api/brands/${brand._id}`)
+            await axios.delete(`https://udemandme.cloud/api/brands/${brand._id}`)
           }
 
           toast.success(`${selectedRows.length} brand(s) deleted successfully!`)
@@ -345,7 +345,7 @@ const Brand = () => {
       // Update each selected brand
       await Promise.all(
         selectedRows.map((brand) =>
-          axios.put(`http://udemandme.cloud/api/brands/edit/${brand._id}`, {
+          axios.put(`https://udemandme.cloud/api/brands/edit/${brand._id}`, {
             status: newStatus,
           }),
         ),
@@ -375,7 +375,7 @@ const Brand = () => {
       const statusNumber = Number(newStatus)
 
       // Send PUT request to update status
-      await axios.put(`http://udemandme.cloud/api/brands/edit/${id}`, {
+      await axios.put(`https://udemandme.cloud/api/brands/edit/${id}`, {
         status: statusNumber,
       })
 
@@ -646,7 +646,7 @@ const Brand = () => {
                       src={
                         editForm.imagePreview
                           ? editForm.imagePreview
-                          : `http://udemandme.cloud/uploads/brand/${editForm.brand_img}`
+                          : `https://udemandme.cloud/uploads/brand/${editForm.brand_img}`
                       }
                       alt="preview"
                       className="mt-2"

@@ -81,7 +81,7 @@ const Categoryblog = () => {
   // Component top level pe define karo
   const fetchAllCategory = async () => {
     try {
-      const response = await axios.get('http://udemandme.cloud/api/allcategory')
+      const response = await axios.get('https://udemandme.cloud/api/allcategory')
       setAllcategory(response.data.data)
     } catch (err) {
       console.error('Error fetching categories:', err)
@@ -126,7 +126,7 @@ const Categoryblog = () => {
       // const obj = Object.fromEntries(formData.entries())
       // console.log('FormData as JSON:', obj)
 
-      const res = await axios.post('http://udemandme.cloud/api/postblogcategory', formData, {
+      const res = await axios.post('https://udemandme.cloud/api/postblogcategory', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
 
@@ -159,7 +159,7 @@ const Categoryblog = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const res = await axios.delete(`http://udemandme.cloud/api/deletecategory/${id}`)
+          const res = await axios.delete(`https://udemandme.cloud/api/deletecategory/${id}`)
 
           if (res.data.success) {
             // frontend state se remove karna
@@ -191,7 +191,7 @@ const Categoryblog = () => {
       }
 
       const res = await axios.put(
-        `http://udemandme.cloud/api/updatecategory/${editForm.id}`,
+        `https://udemandme.cloud/api/updatecategory/${editForm.id}`,
         formData,
         { headers: { 'Content-Type': 'multipart/form-data' } },
       )
@@ -243,7 +243,7 @@ const Categoryblog = () => {
   const handleStatusChange = async (id, newStatus) => {
     try {
       const res = await axios.patch(
-        `http://udemandme.cloud/api/updatecategorystatus/${id}`,
+        `https://udemandme.cloud/api/updatecategorystatus/${id}`,
         { statusactiveinactive: newStatus }, // 👈 backend ke saath match
       )
 
@@ -276,7 +276,7 @@ const Categoryblog = () => {
       // 1️⃣ Backend delete
       await Promise.all(
         selectedRows.map((blog) =>
-          axios.delete(`http://udemandme.cloud/api/deletecategory/${blog._id}`),
+          axios.delete(`https://udemandme.cloud/api/deletecategory/${blog._id}`),
         ),
       )
 
@@ -321,7 +321,7 @@ const Categoryblog = () => {
     try {
       await Promise.all(
         selectedRows.map((category) =>
-          axios.patch(`http://udemandme.cloud/api/updatecategorystatus/${category._id}`, {
+          axios.patch(`https://udemandme.cloud/api/updatecategorystatus/${category._id}`, {
             statusactiveinactive: status,
           }),
         ),

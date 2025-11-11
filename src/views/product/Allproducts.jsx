@@ -433,7 +433,7 @@ const Allproducts = () => {
 
       // ---------------- Send API ----------------
       const response = await axios.put(
-        `http://udemandme.cloud/api/products/${editForm._id}`,
+        `https://udemandme.cloud/api/products/${editForm._id}`,
         formData,
         {
           headers: { 'Content-Type': 'multipart/form-data' },
@@ -454,7 +454,7 @@ const Allproducts = () => {
 
   const handleEditClick = async (product) => {
     try {
-      const res = await axios.get(`http://udemandme.cloud/api/products/${product.id}`)
+      const res = await axios.get(`https://udemandme.cloud/api/products/${product.id}`)
       if (!res.data.success) {
         toast.error('Failed to load product details')
         return
@@ -603,7 +603,7 @@ const Allproducts = () => {
     }).then(async (res) => {
       if (res.isConfirmed) {
         try {
-          axios.delete('http://udemandme.cloud/api/products', {
+          axios.delete('https://udemandme.cloud/api/products', {
             data: { ids: [id] },
           })
 
@@ -649,7 +649,7 @@ const Allproducts = () => {
         try {
           const ids = selectedRows.map((r) => r.id)
 
-          axios.delete('http://udemandme.cloud/api/products', {
+          axios.delete('https://udemandme.cloud/api/products', {
             data: { ids },
           })
 
@@ -674,7 +674,7 @@ const Allproducts = () => {
       )
 
       // ✅ API Update
-      await axios.patch(`http://udemandme.cloud/api/products/${id}/status`, {
+      await axios.patch(`https://udemandme.cloud/api/products/${id}/status`, {
         productStock: newStockValue,
       })
 
@@ -864,7 +864,7 @@ const Allproducts = () => {
 
     try {
       setUploading(true)
-      const res = await fetch('http://udemandme.cloud/api/products/import', {
+      const res = await fetch('https://udemandme.cloud/api/products/import', {
         method: 'POST',
         body: formData,
       })
@@ -970,7 +970,7 @@ const Allproducts = () => {
       }
 
       // ---------------- Send API ----------------
-      const response = await axios.post('http://udemandme.cloud/api/products', formData, {
+      const response = await axios.post('https://udemandme.cloud/api/products', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
 
@@ -1011,7 +1011,7 @@ const Allproducts = () => {
   const loadTagOptions = async (inputValue) => {
     try {
       const res = await fetch(
-        `http://udemandme.cloud/api/tags?search=${inputValue}&limit=20&page=1`,
+        `https://udemandme.cloud/api/tags?search=${inputValue}&limit=20&page=1`,
       )
       const result = await res.json()
 
@@ -1038,7 +1038,7 @@ const Allproducts = () => {
         let totalPages = 1
 
         do {
-          const res = await fetch(`http://udemandme.cloud/api/categories?page=${page}&limit=100`)
+          const res = await fetch(`https://udemandme.cloud/api/categories?page=${page}&limit=100`)
           if (!res.ok) throw new Error('Failed to fetch categories')
 
           const result = await res.json()
@@ -1105,7 +1105,7 @@ const Allproducts = () => {
         let totalPages = 1
 
         do {
-          const res = await fetch(`http://udemandme.cloud/api/brands?page=${page}&limit=100`)
+          const res = await fetch(`https://udemandme.cloud/api/brands?page=${page}&limit=100`)
           if (!res.ok) throw new Error('Failed to fetch brands')
 
           const result = await res.json()
@@ -1169,7 +1169,7 @@ const Allproducts = () => {
       try {
         setLoadingAttributes(true)
 
-        const res = await fetch('http://udemandme.cloud/api/attributes')
+        const res = await fetch('https://udemandme.cloud/api/attributes')
         if (!res.ok) throw new Error('Failed to fetch attributes')
 
         const result = await res.json()
@@ -1210,7 +1210,7 @@ const Allproducts = () => {
   const fetchProducts = async () => {
     try {
       const res = await axios.get(
-        `http://udemandme.cloud/api/products?page=${page}&limit=${limit}&search=${search}`,
+        `https://udemandme.cloud/api/products?page=${page}&limit=${limit}&search=${search}`,
       )
 
       if (res.data.success) {
@@ -1238,7 +1238,8 @@ const Allproducts = () => {
                 ?.filter((b) => b)
                 ?.map((b) => b.name)
                 .join(', ') || '',
-            image: p.productImages?.length > 0 ? `http://udemandme.cloud${p.productImages[0]}` : '',
+            image:
+              p.productImages?.length > 0 ? `https://udemandme.cloud${p.productImages[0]}` : '',
             status: 'Active', // static for now
           }
         })
@@ -2249,7 +2250,7 @@ const Allproducts = () => {
                                         src={
                                           attr.fields[val].image.startsWith('http')
                                             ? attr.fields[val].image
-                                            : `http://udemandme.cloud${attr.fields[val].image}`
+                                            : `https://udemandme.cloud${attr.fields[val].image}`
                                         }
                                         alt="db-preview"
                                         width="80"
@@ -2837,7 +2838,7 @@ const Allproducts = () => {
                         src={
                           editForm.productImage.startsWith('http')
                             ? editForm.productImage
-                            : `http://udemandme.cloud${editForm.productImage}`
+                            : `https://udemandme.cloud${editForm.productImage}`
                         }
                         alt="db-preview"
                         width="80"
@@ -2877,7 +2878,7 @@ const Allproducts = () => {
                             typeof img === 'string'
                               ? img.startsWith('http')
                                 ? img
-                                : `http://udemandme.cloud${img}`
+                                : `https://udemandme.cloud${img}`
                               : URL.createObjectURL(img)
                           }
                           alt={`gallery-${index}`}

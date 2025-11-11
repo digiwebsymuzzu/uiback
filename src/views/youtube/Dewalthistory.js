@@ -63,7 +63,7 @@ const Dewalthistory = () => {
   // Get All Data
   const fetchdata = async () => {
     try {
-      const response = await axios.get('http://udemandme.cloud/api/dewaltgetall')
+      const response = await axios.get('https://udemandme.cloud/api/dewaltgetall')
       setAlldata(response.data.data)
     } catch (err) {
       console.error('Error fetching Url:', err)
@@ -79,7 +79,7 @@ const Dewalthistory = () => {
   const handleAddSubmit = async (e) => {
     e.preventDefault()
     try {
-      const res = await axios.post('http://udemandme.cloud/api/createdewalt', addForm, {
+      const res = await axios.post('https://udemandme.cloud/api/createdewalt', addForm, {
         headers: { 'Content-Type': 'application/json' },
       })
       // console.log('addForm as JSON:', addForm)
@@ -108,7 +108,7 @@ const Dewalthistory = () => {
       if (result.isConfirmed) {
         try {
           const response = await axios.delete(
-            `http://udemandme.cloud/api/deletedewaltyoutube/${id}`,
+            `https://udemandme.cloud/api/deletedewaltyoutube/${id}`,
           )
           if (response.data.success) {
             setAlldata((prev) => prev.filter((item) => item._id !== id))
@@ -136,7 +136,7 @@ const Dewalthistory = () => {
   const handleEditSubmit = async () => {
     try {
       const res = await axios.put(
-        `http://udemandme.cloud/api/updateyoutube/${editForm._id}`,
+        `https://udemandme.cloud/api/updateyoutube/${editForm._id}`,
         editForm,
         { headers: { 'Content-Type': 'application/json' } },
       )
@@ -161,7 +161,7 @@ const Dewalthistory = () => {
   }
   const handleStatusChange = async (id, newStatus) => {
     try {
-      const res = await axios.patch(`http://udemandme.cloud/api/updatestatusyutube/${id}`, {
+      const res = await axios.patch(`https://udemandme.cloud/api/updatestatusyutube/${id}`, {
         status: newStatus,
       })
       if (res.data.success) {

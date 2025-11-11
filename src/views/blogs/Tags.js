@@ -67,7 +67,7 @@ const Tags = () => {
   const handleAddSubmit = async (e) => {
     e.preventDefault()
     try {
-      const res = await axios.post('http://udemandme.cloud/api/blogtag', addForm, {
+      const res = await axios.post('https://udemandme.cloud/api/blogtag', addForm, {
         headers: { 'Content-Type': 'application/json' },
       })
 
@@ -106,7 +106,7 @@ const Tags = () => {
   // Component top level pe define karo
   const fetchAlltags = async () => {
     try {
-      const response = await axios.get('http://udemandme.cloud/api/getalltag')
+      const response = await axios.get('https://udemandme.cloud/api/getalltag')
       setAlltags(response.data.data)
     } catch (err) {
       console.error('Error fetching Blog Tag:', err)
@@ -127,7 +127,7 @@ const Tags = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const res = await axios.delete(`http://udemandme.cloud/api/deletetag/${id}`)
+          const res = await axios.delete(`https://udemandme.cloud/api/deletetag/${id}`)
 
           if (res.data.success) {
             // frontend state se remove karna
@@ -177,9 +177,13 @@ const Tags = () => {
   const handleEditSubmit = async () => {
     try {
       // PUT request to update tag by ID
-      const res = await axios.put(`http://udemandme.cloud/api/tagupdate/${editForm.id}`, editForm, {
-        headers: { 'Content-Type': 'application/json' },
-      })
+      const res = await axios.put(
+        `https://udemandme.cloud/api/tagupdate/${editForm.id}`,
+        editForm,
+        {
+          headers: { 'Content-Type': 'application/json' },
+        },
+      )
 
       if (res.data.success) {
         toast.success('Blog Tag updated successfully!')
@@ -209,7 +213,7 @@ const Tags = () => {
     try {
       // 1️⃣ Backend delete
       await Promise.all(
-        selectedRows.map((tag) => axios.delete(`http://udemandme.cloud/api/deletetag/${tag._id}`)),
+        selectedRows.map((tag) => axios.delete(`https://udemandme.cloud/api/deletetag/${tag._id}`)),
       )
 
       // 2️⃣ Frontend update

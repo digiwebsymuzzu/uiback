@@ -28,7 +28,7 @@ const Login = () => {
     e.preventDefault()
     setError('') // clear previous error
     try {
-      const res = await axios.post('http://udemandme.cloud/api/login', { email, password })
+      const res = await axios.post('https://udemandme.cloud/api/login', { email, password })
 
       // Save token to localStorage
       localStorage.setItem('token', res.data.token)

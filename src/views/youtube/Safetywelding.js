@@ -56,7 +56,7 @@ const Safetywelding = () => {
   const handleAddSubmit = async (e) => {
     e.preventDefault()
     try {
-      const res = await axios.post('http://udemandme.cloud/api/postsafety', addForm, {
+      const res = await axios.post('https://udemandme.cloud/api/postsafety', addForm, {
         headers: { 'Content-Type': 'application/json' },
       })
       // console.log('addForm as JSON:', addForm)
@@ -80,7 +80,7 @@ const Safetywelding = () => {
   // Get All Data
   const fetchdata = async () => {
     try {
-      const response = await axios.get('http://udemandme.cloud/api/safetyallget')
+      const response = await axios.get('https://udemandme.cloud/api/safetyallget')
       setAlldata(response.data.data)
     } catch (err) {
       console.error('Error fetching Url:', err)
@@ -104,7 +104,7 @@ const Safetywelding = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await axios.delete(`http://udemandme.cloud/api/safetydelete/${id}`)
+          const response = await axios.delete(`https://udemandme.cloud/api/safetydelete/${id}`)
           if (response.data.success) {
             setAlldata((prev) => prev.filter((item) => item._id !== id))
             toast.success('Safety Deleted successfully!')
@@ -135,7 +135,7 @@ const Safetywelding = () => {
   const handleEditSubmit = async () => {
     try {
       const res = await axios.put(
-        `http://udemandme.cloud/api/updateyoutubesafety/${editForm._id}`,
+        `https://udemandme.cloud/api/updateyoutubesafety/${editForm._id}`,
         editForm,
         { headers: { 'Content-Type': 'application/json' } },
       )
@@ -160,7 +160,7 @@ const Safetywelding = () => {
   }
   const handleStatusChange = async (id, newStatus) => {
     try {
-      const res = await axios.patch(`http://udemandme.cloud/api/safetystatus/${id}`, {
+      const res = await axios.patch(`https://udemandme.cloud/api/safetystatus/${id}`, {
         status: newStatus,
       })
       if (res.data.success) {

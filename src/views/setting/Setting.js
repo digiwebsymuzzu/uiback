@@ -73,14 +73,14 @@ const Setting = () => {
   const buildLogoUrl = (path) => {
     if (!path) return null
     const clean = path.startsWith('/') ? path.slice(1) : path
-    return `http://udemandme.cloud/${clean}`
+    return `https://udemandme.cloud/${clean}`
   }
 
   // 🔹 Fetch existing settings on mount
   useEffect(() => {
     const fetchSettings = async () => {
       try {
-        const res = await fetch('http://udemandme.cloud/api/settings', {
+        const res = await fetch('https://udemandme.cloud/api/settings', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
@@ -143,7 +143,7 @@ const Setting = () => {
         Object.entries(textFields).forEach(([k, v]) => fd.append(k, v ?? ''))
         fd.append('logo', logo)
 
-        res = await fetch('http://udemandme.cloud/api/settings/update', {
+        res = await fetch('https://udemandme.cloud/api/settings/update', {
           method: 'POST',
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -153,7 +153,7 @@ const Setting = () => {
         })
       } else {
         // Otherwise keep your existing JSON update
-        res = await fetch('http://udemandme.cloud/api/settings/update', {
+        res = await fetch('https://udemandme.cloud/api/settings/update', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
