@@ -62,47 +62,38 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-// Resolve __dirname in ES modules
+// Resolve __dirname
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-// Debug: log every request
+// CORS FIX (FULLY OPEN FOR LIVE + LOCALHOST)
 app.use((req, res, next) => {
-  console.log('[INDEX] Incoming request: - index.js:31', req.method, req.path)
-  next()
-})
-
-// CORS setup
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://udemandme.cloud')
+  res.header('Access-Control-Allow-Origin', '*')
   res.header(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept, Authorization',
   )
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS')
   if (req.method === 'OPTIONS') {
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE')
     return res.status(204).end()
   }
   next()
 })
 
-// Serve static files (for uploaded logos)
-app.use('/uploads/logo', express.static(path.join(__dirname, 'uploads/logo')))
-
-// Serve uploads folder
+// Serve uploads
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
 // Routes
-app.use('/api', userRoutes) // Login
-app.use('/api/profile', profileRoutes) // Profile
-app.use('/api/settings', settingRoutes) // Settings
-app.use('/api/categories', categoryRoutes) // Product Category
-app.use('/api/brands', brandRoutes) // Product Brand
-app.use('/api/tags', tagRoutes) // Product Tags
-app.use('/api/attributes', attributeRoutes) // Product Attributes
-app.use('/api/products', productRoutes) // Products
-app.use('/api/reviews', reviewRoutes) // Reviews
-app.use('/api/order', orderRoutes) // Order
+app.use('/api', userRoutes)
+app.use('/api/profile', profileRoutes)
+app.use('/api/settings', settingRoutes)
+app.use('/api/categories', categoryRoutes)
+app.use('/api/brands', brandRoutes)
+app.use('/api/tags', tagRoutes)
+app.use('/api/attributes', attributeRoutes)
+app.use('/api/products', productRoutes)
+app.use('/api/reviews', reviewRoutes)
+app.use('/api/order', orderRoutes)
 
 app.use('/api/blog', createBlogPost)
 app.use('/api/allblog', getallblogs)
@@ -141,15 +132,12 @@ app.use('/api/annulardelete', deleteannular)
 app.use('/api/annularupdate', updateyoutubeannular)
 app.use('/api/annularupdatestatus', updateStatusannular)
 
-// 404 fallback
+// 404
 app.use((req, res) => {
-  console.log('[INDEX] Route not found: - index.js:68', req.method, req.path)
   res.status(404).json({ message: 'Route not found' })
 })
 
-const PORT = process.env.PORT || 5000
-app.listen(PORT, () => console.log(`Server running on port ${PORT} - index.js:73`))
-
+const PORT = process.env.PORT || 5001
 app.listen(PORT, () => {
-  console.log(`https://udemandme.cloud/ server is running on ${PORT}`)
+  console.log(`Server running on https://udemandme.cloud/ on PORT ${PORT}`)
 })
