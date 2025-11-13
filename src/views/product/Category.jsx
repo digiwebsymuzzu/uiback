@@ -717,7 +717,7 @@ const Category = () => {
                 </CCol>
 
                 {/* Is Super Parent Checkbox */}
-                <CCol xs={12} className="mb-3">
+                {/* <CCol xs={12} className="mb-3">
                   <CFormCheck
                     type="checkbox"
                     id="isSuperParent"
@@ -725,7 +725,7 @@ const Category = () => {
                     checked={addForm.isSuperParent}
                     onChange={(e) => setAddForm({ ...addForm, isSuperParent: e.target.checked })}
                   />
-                </CCol>
+                </CCol> */}
 
                 {/* Submit Button */}
                 <CCol xs={12} className="mt-3">
